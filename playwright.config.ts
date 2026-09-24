@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import baseEnvUrl from './tests/utils/environmentBaseUrl';
 
-require('dotenv').config();
+require('dotenv').config({ override: true }); // override Windows' reserved USERNAME env var
 
 export default defineConfig({
   globalSetup: require.resolve('./tests/setup/global-setup'),
@@ -14,29 +14,29 @@ export default defineConfig({
   use: {
     storageState: 'storageState.json',
     trace: 'on',
-    baseURL: process.env.ENV === 'production' 
+    baseURL: process.env.ENV === 'production'
       ? baseEnvUrl.production.home
-      : process.env.ENV === 'staging' 
+      : process.env.ENV === 'staging'
         ? baseEnvUrl.staging.home
         : baseEnvUrl.local.home
   },
 
   projects: [
-    { 
-      name: 'auth-setup', 
-      testMatch: /auth-setup\.ts/ 
+    {
+      name: 'auth-setup',
+      testMatch: /auth-setup\.ts/
     },
     {
       name: 'chromium',
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
         storageState: 'storageState.json',
-       },
+      },
     },
     {
       name: 'chromium-auth',
-      use: { 
-        ...devices['Desktop Chrome'] ,
+      use: {
+        ...devices['Desktop Chrome'],
         // storageState: '.auth/admin.json', //use this in case you have multiple projects one per user
       },
       dependencies: ['auth-setup'],

@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import baseEnvUrl from './tests/utils/environmentBaseUrl';
 
-require('dotenv').config();
+require('dotenv').config({ override: true }); // override Windows' reserved USERNAME env var
 
 export default defineConfig({
   globalSetup: require.resolve('./tests/setup/global-setup'),
@@ -13,9 +13,9 @@ export default defineConfig({
   use: {
     storageState: 'storageState.json',
     trace: 'on',
-    baseURL: process.env.ENV === 'production' 
+    baseURL: process.env.ENV === 'production'
       ? baseEnvUrl.production.home
-      : process.env.ENV === 'staging' 
+      : process.env.ENV === 'staging'
         ? baseEnvUrl.staging.home
         : baseEnvUrl.local.home
   },

@@ -18,6 +18,8 @@
   "devDependencies": {
     "@applitools/eyes-playwright": "^1.17.5",
     "@playwright/test": "^1.35.1",
-    "dotenv": "^16.1.4"
+    "@types/node": "^26.6.2",
+    "dotenv": "^16.1.4",
+    "typescript": "^4.9.5"
   }
 }
