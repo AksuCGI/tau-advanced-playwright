@@ -12,7 +12,7 @@ export default defineConfig({
   reporter: 'html',
   // timeout: 5000,
   use: {
-    storageState: 'storageState.json',
+    storageState: './states/storageStateTest.json',
     trace: 'on',
     baseURL: process.env.ENV === 'production'
       ? baseEnvUrl.production.home
