@@ -1,4 +1,4 @@
-import { type Page, type Locator , expect } from '@playwright/test';
+import { type Page, type Locator, expect } from '@playwright/test';
 import messages from '../../utils/messages';
 
 class LoginPage {
@@ -32,7 +32,7 @@ class LoginPage {
 
   async checkLoggedIn() {
     await expect(this.page).toHaveURL(/.*profile/);
-    await expect(this.page).toHaveTitle(/DEMOQA/);
+    await expect(this.page).toHaveTitle(/demosite/);
   }
 
   async checkInvalidCredentials() {
